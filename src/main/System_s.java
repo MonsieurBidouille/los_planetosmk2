@@ -52,7 +52,7 @@ public class System_s {
 
         for (int i = 0; i < j; i++) {
 
-            launch.turnmeteor();
+            launch.meteortavel();
 
             for (CorpsCeleste p : this.corps) {
                 if (p.getClass() == Planet.class) {

@@ -15,7 +15,7 @@ public class Launcher {
     private List<Meteor> meteorlist = new ArrayList<>();
 
     public Launcher() {
-        this.position = new Position(280000000,280000000);;
+        this.position = new Position(280000000,280000000);
     }
 
     public Position getPosition() {
@@ -68,7 +68,7 @@ public class Launcher {
             Singleton.getInstance().addjson(m.toJSON());
         }
     }
-    public void turnmeteor(){
+    public void meteortavel(){
         for (Meteor m : this.meteorlist){
             m.travel();
         }
