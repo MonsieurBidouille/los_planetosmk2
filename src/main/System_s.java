@@ -3,10 +3,12 @@ package main;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class System_s {
     private String nom;
     private List<CorpsCeleste> corps = new ArrayList<>();
+    private List<CorpsCeleste> ptrash = new ArrayList<>();
 
     public System_s(String nom) {
         this.nom = nom;
@@ -31,6 +33,10 @@ public class System_s {
     public void addCorp(CorpsCeleste cc){
         corps.add(cc);
     }
+
+    public void ptrash(Planet p){
+        this.ptrash.add(p);
+    }
     public CorpsCeleste findById(int id){
         for(CorpsCeleste cc : this.corps){
             if(cc.getId() == id){
@@ -46,9 +52,16 @@ public class System_s {
 
         Launcher launch = new Launcher();
 
+        List<Planet> planets = new ArrayList<>();
+        Random random = new Random();
+
+        for (CorpsCeleste p : this.corps) {
+            if (p.getClass() == Planet.class) {
+                planets.add((Planet)p);
+            }
+        }
 
         int crash = 0;
-
 
         for (int i = 0; i < j; i++) {
 
@@ -59,16 +72,29 @@ public class System_s {
                     ((Planet) p).turn();
                 }
             }
-            for (CorpsCeleste c:this.corps){
-                launch.wcheckcollision(c);
+            for (CorpsCeleste c: this.corps){
+                launch.wcheckcollision(c,this);
                 Singleton.getInstance().addjson(c.toJSON());
             }
 
+            for (CorpsCeleste c : ptrash) {
+                if (c.getClass() == Planet.class) {
+                    for (Satellite s : ((Planet) c).satellites){
+                        this.corps.remove(s);
+                    }
+                    this.corps.remove(c);
+                } else {
+                    ptrash.clear();
+                }
+            }
 
-            if(crash == 0) {
-                launch.planetcrash((Planet)corps.get(3));
+
+            if(crash %33 == 0) {
+               int r = random.nextInt(planets.size());
+               launch.planetcrash(planets.get(r));
             }
             crash++;
+
 
             launch.printmeteor();
 

@@ -31,7 +31,7 @@ public class Main {
         sol.addCorp(lune);
         sol.addCorp(mars);
         sol.addCorp(phobos);
-        sol.turnall(100);
+        sol.turnall(800);
 
     }
 }

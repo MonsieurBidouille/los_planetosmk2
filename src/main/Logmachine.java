@@ -19,9 +19,14 @@ public class Logmachine {
     public Logmachine() throws FileNotFoundException {
     }
 
-    public void printcollision(CorpsCeleste c){
-        // backlog.add("{\"type\":\"event\",\"event\":\""+c.getName()+"est entré en collision avec une météorite.\"}");
-    }
+    public void printcollision(CorpsCeleste c,Meteor m){
+        if(m.getType() == Meteor_type.NORMAL) {
+            backlog.add("{\"type\":\"event\",\"event\":\"" + c.getName() + "est entrée en collision avec une météorite.\"}");
+        }else {
+            backlog.add("{\"type\":\"event\",\"event\":\"" + c.getName() + "est entrée en collision avec une météorite de la mort est a été détruite :(\"}");
+        }
+
+        }
 
     public void addjson(String s) {
        templog.add(s);

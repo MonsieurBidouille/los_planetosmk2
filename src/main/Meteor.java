@@ -7,12 +7,12 @@ public class Meteor{
     int cid = 1;
     Meteor_type type;
     Speed speed;
-    Position position;
+    Position mposition;
 
-    public Meteor(Position position, Meteor_type type, Speed speed) {
+    public Meteor(Position mposition, Meteor_type type, Speed speed) {
         this.id = cid;
         cid++;
-        this.position = position;
+        this.mposition = mposition;
         this.type = type;
         this.speed = speed;
     }
@@ -33,12 +33,12 @@ public class Meteor{
         this.speed = speed;
     }
 
-    public Position getPosition() {
-        return position;
+    public Position getMposition() {
+        return mposition;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setMposition(Position mposition) {
+        this.mposition = mposition;
     }
 
     public int getId() {
@@ -50,19 +50,21 @@ public class Meteor{
     }
 
     public void travel(){
-        this.position.setX(this.position.getX()+(this.getSpeed().Xspeed));
-        this.position.setY(this.position.getY()+(this.getSpeed().Yspeed));
+        this.mposition.setX(this.mposition.getX()+(this.getSpeed().Xspeed));
+        this.mposition.setY(this.mposition.getY()+(this.getSpeed().Yspeed));
     }
 
     public boolean checkcollision(CorpsCeleste c) throws FileNotFoundException {
-        double x1 = this.position.getX();
-        double y1 = this.position.getY();
+        double x1 = this.mposition.getX();
+        double y1 = this.mposition.getY();
         double x2 = c.getPosition().getX();
         double y2 = c.getPosition().getY();
+        double size = c.getSize();
 
+        double distance = Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
-        if((x1 == x2 && y1 == y2)){
-            Singleton.getInstance().printcollision(c);
+        if(distance<=size){
+            Singleton.getInstance().printcollision(c,this);
             return true;
         }
 
@@ -70,7 +72,7 @@ public class Meteor{
     }
 
     public String toJSON(){
-        return "{'x':"+this.getPosition().getX()+", 'y':"+this.getPosition().getY()+"}";
+        return "{'x':"+this.getMposition().getX()+", 'y':"+this.getMposition().getY()+"}";
     }
 
 
