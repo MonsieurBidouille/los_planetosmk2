@@ -55,13 +55,15 @@ public class System_s {
         List<Planet> planets = new ArrayList<>();
         Random random = new Random();
 
+        int rcrash = 0 ;
+
         for (CorpsCeleste p : this.corps) {
             if (p.getClass() == Planet.class) {
                 planets.add((Planet)p);
             }
         }
 
-        int crash = 0;
+
 
         for (int i = 0; i < j; i++) {
 
@@ -89,11 +91,11 @@ public class System_s {
             }
 
 
-            if(crash %33 == 0) {
+            if(rcrash %33 == 0) {
                int r = random.nextInt(planets.size());
                launch.planetcrash(planets.get(r),random.nextInt(300)+100);
             }
-            crash++;
+            rcrash++;
 
 
             launch.printmeteor();
