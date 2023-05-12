@@ -1,0 +1,8 @@
+{
+  "id": 1664,
+  "name":"loulou",
+  "size": 12,
+  "position": {"x":0,"y": 0},
+  "vitesse": {"x":13000,"y": 13000},
+  "met_type": "NORMAL"
+}
