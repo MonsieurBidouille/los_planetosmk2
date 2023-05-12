@@ -21,9 +21,16 @@ public class Main {
         JSONObject phob = Tools.jsonFileToJsonObject("phobos.json");
         Satellite phobos = (Satellite) Factorycorpceleste.facto_cc(SATELLITE,phob);
 
+        JSONObject jupiter = Tools.jsonFileToJsonObject("jupiter.json");
+        Planet jupifake = (Planet)Factorycorpceleste.facto_cc(PLANET,jupiter);
+
+        JSONObject euro = Tools.jsonFileToJsonObject("europe.json");
+        Satellite europe = (Satellite)Factorycorpceleste.facto_cc(SATELLITE,euro);
+
         System.out.println(soleil.getName());
         terre.add_satellite(lune);
         mars.add_satellite(phobos);
+        jupifake.add_satellite(europe);
         System.out.println(terre.getName());
         System_s sol = new System_s("Systaire");
         sol.addCorp(soleil);
@@ -31,6 +38,8 @@ public class Main {
         sol.addCorp(lune);
         sol.addCorp(mars);
         sol.addCorp(phobos);
+        sol.addCorp(jupifake);
+        sol.addCorp(europe);
         sol.turnall(800);
 
     }

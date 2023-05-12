@@ -36,16 +36,16 @@ public class Launcher {
         this.meteorlist = meteorlist;
     }
 
-    public void planetcrash(Planet p){
+    public void planetcrash(Planet p,int speed){
 
         double x1 = this.position.getX();
         double y1 = this.position.getY();
 
-        double x2 = p.turnsim(100).getX();
-        double y2 = p.turnsim(100).getY();
+        double x2 = p.turnsim(speed).getX();
+        double y2 = p.turnsim(speed).getY();
 
-        double vx = (x2 - x1)/100;
-        double vy = (y2 - y1)/100;
+        double vx = (x2 - x1)/speed;
+        double vy = (y2 - y1)/speed;
 
         int r = rng.nextInt(100);
         if(r>10){

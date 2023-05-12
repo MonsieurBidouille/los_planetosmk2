@@ -91,7 +91,7 @@ public class System_s {
 
             if(crash %33 == 0) {
                int r = random.nextInt(planets.size());
-               launch.planetcrash(planets.get(r));
+               launch.planetcrash(planets.get(r),random.nextInt(300)+100);
             }
             crash++;
 
